@@ -2,6 +2,12 @@
 
 VISCUE is a web-based HMI simulation framework designed for experimental interface control and user decision tracking. It simulates control panels similar to those used in high-reliability systems (e.g., nuclear power plants), allowing toggling of operational states, visual feedback, and log collection.
 
+## 🖼 Interface Preview
+
+<p align="center">
+  <img src="./public/example.png" alt="Example Interface" width="600"/>
+</p>
+
 ---
 
 ## 📦 Installation Instructions

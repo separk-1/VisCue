@@ -13,28 +13,33 @@ function createLogEntry(type, label) {
 
 export default function App() {
   const log = useRef([])
-  const [selectedSetName, setSelectedSetName] = useState('Set A')
+  const [selectedSetName, setSelectedSetName] = useState('Bad State')
   const [states, setStates] = useState(initialSets[selectedSetName])
-  const controls = Object.keys(states)
+  const controls = Object.keys(states || {})
+
   const [participantName, setParticipantName] = useState('')
   const [isLogging, setIsLogging] = useState(false)
   const [isExperimentEnded, setIsExperimentEnded] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
-  const handleToggle = (label, newState) => {
+  const handleToggle = (label, newState, event = null) => {
     setStates(prev => ({ ...prev, [label]: newState }))
     if (isLogging && !isExperimentEnded) {
       log.current.push({
         type: 'toggle',
         label: `${label} ${newState}`,
         time: Date.now(),
-        x: window.event?.clientX ?? null,
-        y: window.event?.clientY ?? null
+        x: event?.clientX ?? null,
+        y: event?.clientY ?? null
       })
     }
   }
   
+  console.log("selectedSetName:", selectedSetName)
+console.log("states:", states)
+console.log("controls:", controls)
 
+  
   const handleSetChange = (e) => {
     const newSet = e.target.value
     setSelectedSetName(newSet)
@@ -115,7 +120,8 @@ export default function App() {
           <DisplayGrid controls={controls} states={states} />
         </div>
 
-        <ControlGrid controls={controls} states={states} onToggle={handleToggle} />
+        <ControlGrid controls={controls} states={states} onToggle={(label, newState, event) => handleToggle(label, newState, event)} />
+
 
         <div style={{ textAlign: 'center', marginTop: '1rem' }}>
           <input

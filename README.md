@@ -81,3 +81,6 @@ npm run build  # Builds project to the dist/ folder
 - CSS Modules
 - Conda (for integrated Python + NodeJS setup)
 
+---
+🔗 Live Demo: [vis-cue.vercel.app](https://vis-cue-ss-projects-d534f65d.vercel.app/)
+📂 Source Code: [github.com/separk-1/viscue](https://github.com/separk-1/viscue)

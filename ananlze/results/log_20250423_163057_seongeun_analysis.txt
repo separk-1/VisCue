@@ -1,0 +1,24 @@
+=== Experiment Analysis Summary ===
+Total Time: 20.182 sec
+Final State Matches Target: False
+Accuracy: 26.7%
+Average Time to Reach Correct State: 11.93 sec
+Redundant Action Ratio: 40.0%
+Unmatched Components: ['Safety Valve', 'Pressure Valve', 'Condensate Pump', 'Generator', 'Turbine', 'Transformer', 'Relief Valve 3698', 'Relief Valve 3699', 'Relief Valve 3700', 'Relief Valve 3671', 'Relief Valve 3673']
+Mastered Components (1 toggle & correct): ['Main Feedwater Pump', 'Relief Valve 3672']
+Confused Components (many toggles or incorrect): ['Safety Valve', 'Generator', 'Turbine', 'Relief Valve 3698', 'Relief Valve 3700']
+Overcorrected Components: ['Relief Valve 3698']
+
+--- Time to Reach Target (per component) ---
+ - Main Feedwater Pump: 5.42 sec
+ - Relief Valve 3698: 13.52 sec
+ - Relief Valve 3672: 16.85 sec
+
+--- Toggle Counts ---
+ - Safety Valve: 1
+ - Main Feedwater Pump: 1
+ - Generator: 1
+ - Turbine: 1
+ - Relief Valve 3698: 4
+ - Relief Valve 3700: 1
+ - Relief Valve 3672: 1

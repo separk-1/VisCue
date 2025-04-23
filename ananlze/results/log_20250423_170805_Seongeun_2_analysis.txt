@@ -1,0 +1,38 @@
+=== Experiment Analysis Summary ===
+Total Time: 48.842 sec
+Final State Matches Target: True
+Accuracy: 100.0%
+Average Time to Reach Correct State: 32.23 sec
+Redundant Action Ratio: 0.0%
+Unmatched Components: []
+Mastered Components (1 toggle & correct): ['Pressure Valve', 'Condensate Pump', 'Main Feedwater Pump', 'Circulating Water Pump', 'Generator', 'Transformer', 'Relief Valve 3698', 'Relief Valve 3699', 'Relief Valve 3700', 'Relief Valve 3671', 'Relief Valve 3672', 'Relief Valve 3673']
+Confused Components (many toggles or incorrect): []
+Overcorrected Components: []
+
+--- Time to Reach Target (per component) ---
+ - Pressure Valve: 13.78 sec
+ - Condensate Pump: 16.94 sec
+ - Main Feedwater Pump: 20.66 sec
+ - Circulating Water Pump: 24.92 sec
+ - Generator: 28.77 sec
+ - Transformer: 32.95 sec
+ - Relief Valve 3698: 37.52 sec
+ - Relief Valve 3699: 39.94 sec
+ - Relief Valve 3700: 40.46 sec
+ - Relief Valve 3671: 41.01 sec
+ - Relief Valve 3672: 44.01 sec
+ - Relief Valve 3673: 45.84 sec
+
+--- Toggle Counts ---
+ - Pressure Valve: 1
+ - Condensate Pump: 1
+ - Main Feedwater Pump: 1
+ - Circulating Water Pump: 1
+ - Generator: 1
+ - Transformer: 1
+ - Relief Valve 3698: 1
+ - Relief Valve 3699: 1
+ - Relief Valve 3700: 1
+ - Relief Valve 3671: 1
+ - Relief Valve 3672: 1
+ - Relief Valve 3673: 1

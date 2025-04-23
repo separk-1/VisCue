@@ -1,0 +1,36 @@
+{
+    "initial": {
+      "Block Valve": "ON",
+      "Safety Valve": "ON",
+      "Pressure Valve": "ON",
+      "Condensate Pump": "OFF",
+      "Main Feedwater Pump": "ON",
+      "Circulating Water Pump": "OFF",
+      "Generator": "OFF",
+      "Turbine": "ON",
+      "Transformer": "ON",
+      "Relief Valve 3698": "OFF",
+      "Relief Valve 3699": "ON",
+      "Relief Valve 3700": "OFF",
+      "Relief Valve 3671": "OFF",
+      "Relief Valve 3672": "OFF",
+      "Relief Valve 3673": "ON"
+    },
+    "target": {
+      "Block Valve": "ON",
+      "Safety Valve": "ON",
+      "Pressure Valve": "OFF",
+      "Condensate Pump": "ON",
+      "Main Feedwater Pump": "OFF",
+      "Circulating Water Pump": "OFF",
+      "Generator": "ON",
+      "Turbine": "ON",
+      "Transformer": "OFF",
+      "Relief Valve 3698": "ON",
+      "Relief Valve 3699": "OFF",
+      "Relief Valve 3700": "ON",
+      "Relief Valve 3671": "ON",
+      "Relief Valve 3672": "OFF",
+      "Relief Valve 3673": "OFF"
+    }
+  }

@@ -1,6 +1,5 @@
 // src/components/Guide_A.jsx
 import React from 'react';
-import '../styles/ui.css'
 
 
 export default function GuideModal({ onClose }) {
@@ -47,7 +46,9 @@ export default function GuideModal({ onClose }) {
           fontWeight: 'bold',
           fontFamily: "'IBM Plex Mono', monospace",
           cursor: 'pointer',
-          border: '1px solid #999'
+          border: '1px solid #999',
+          backgroundColor: '#f0f0f0',
+          color: '#000000'         
         }}>
           Close Guide
         </button>

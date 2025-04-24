@@ -37,6 +37,6 @@ export const initialStateCorrect = {
 
 
 export const initialSets = {
-  'Bad State': initialStateBad,
-  'Correct State': initialStateCorrect
+  'Initial State': initialStateBad,
+  'Expected State': initialStateCorrect
 }

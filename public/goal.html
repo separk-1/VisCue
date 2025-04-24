@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Goal State</title>
+  <style>
+    body {
+      font-family: 'IBM Plex Mono', monospace;
+      padding: 2rem;
+      background-color: #f9fafb;
+      color: #333;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+    strong {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <h2>🎯 Goal: Target State</h2>
+  <ul id="goal-list">
+    <!-- 동적으로 상태 삽입 가능 -->
+  </ul>
+
+  <script>
+    // 예: localStorage에서 가져오기
+    const goalData = JSON.parse(localStorage.getItem('goalState')) || {
+      "Block Valve": "ON",
+      "Safety Valve": "ON",
+      "Pressure Valve": "OFF",
+      "Condensate Pump": "ON"
+    };
+
+    const ul = document.getElementById('goal-list')
+    for (const [label, value] of Object.entries(goalData)) {
+      const li = document.createElement('li')
+      li.innerHTML = `<strong>${label}:</strong> ${value}`
+      ul.appendChild(li)
+    }
+  </script>
+</body>
+</html>

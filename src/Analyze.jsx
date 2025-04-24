@@ -102,20 +102,37 @@ export default function AnalyzePage() {
             </div>
           )}
 
-          {showGuide && (
-            <div style={{ marginTop: '2rem', fontSize: '0.9rem', color: '#444', maxWidth: '700px', marginInline: 'auto', textAlign: 'left' }}>
-              <h3>Guide: How Each Metric is Calculated</h3>
-              <ul>
-                <li><strong>Accuracy:</strong> The percentage of items whose final state matches the target (correct / total).</li>
-                <li><strong>Final State Correct:</strong> "Yes" if all final states match the target, otherwise "No".</li>
-                <li><strong>Average Time to Correct:</strong> The average time (in seconds) it took for each item to first reach its correct target state.</li>
-                <li><strong>Mastered:</strong> Items toggled exactly once and ended in the correct target state.</li>
-                <li><strong>Confused:</strong> Items toggled more than once or ended in an incorrect state.</li>
-                <li><strong>Unmatched:</strong> Items whose final state still does not match the target state.</li>
-              </ul>
+          <details style={{
+            marginTop: '2rem',
+            fontSize: '0.95rem',
+            color: '#444',
+            maxWidth: '700px',
+            marginInline: 'auto',
+            background: '#f5f7fa',
+            borderRadius: '10px',
+            padding: '1.2rem',
+            lineHeight: 1.7,
+            textAlign: 'left',
+            boxShadow: '0 1px 4px rgba(0,0,0,0.06)'
+          }}>
+            <summary style={{
+              fontWeight: 600,
+              fontSize: '1rem',
+              marginBottom: '1rem',
+              cursor: 'pointer',
+              outline: 'none'
+            }}>📘 How Each Metric is Calculated</summary>
 
-            </div>
-          )}
+            <ul style={{ paddingLeft: '1.2rem', listStyle: 'disc' }}>
+              <li><strong>Accuracy:</strong> The percentage of items whose final state matches the target. <em>(correct / total)</em></li>
+              <li><strong>Final State Correct:</strong> "Yes" if <em>all</em> items match the target at the end; otherwise, "No".</li>
+              <li><strong>Average Time to Correct:</strong> The average time (in seconds) it took for each item to first reach its correct state.</li>
+              <li><strong>Mastered:</strong> Items toggled exactly once and ended in the correct state.</li>
+              <li><strong>Confused:</strong> Items toggled more than once or ended in an incorrect state.</li>
+              <li><strong>Unmatched:</strong> Items whose final state still differs from the target state.</li>
+            </ul>
+          </details>
+
         </>
       )}
     </div>

@@ -17,6 +17,16 @@ function createLogEntry(type, label) {
   return { type, label, time: Date.now() }
 }
 
+const btnStyle = {
+  padding: '6px 12px',
+  borderRadius: '6px',
+  fontWeight: 'bold',
+  fontFamily: "'IBM Plex Mono', monospace",
+  border: '1px solid #999',
+  backgroundColor: '#fff',
+  cursor: 'pointer'
+}
+
 export default function App_A_wg() {
   const log = useRef([])
   const [selectedSetName, setSelectedSetName] = useState('Initial State')
@@ -28,6 +38,7 @@ export default function App_A_wg() {
   const [isExperimentEnded, setIsExperimentEnded] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [showGuide, setShowGuide] = useState(false)
+
 
   const handleToggle = (label, newState, event = null) => {
     setStates(prev => ({ ...prev, [label]: newState }))
@@ -115,31 +126,35 @@ console.log("controls:", controls)
     }
   }
 
+  const handleOpenGoalWindow = () => {
+    localStorage.setItem('goalState', JSON.stringify(initialSets['Expected State']))
+    window.open('/goal.html', '_blank', 'width=700,height=600')
+  }
+  
+  
+
   return (
     <div className="fullscreen-app">
     <h2 style={{ fontFamily: 'sans-serif'}}>Senario #2</h2>
       {showGuide && <GuideA onClose={() => setShowGuide(false)} />}
 
       <div className="interface-body">
-        <div style={{ marginBottom: '1rem' }}>
-          
+      <div style={{ marginBottom: '1rem', display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+      <button
+        onClick={() => setShowGuide(true)}
+        style={btnStyle}
+      >
+        Show Guide
+      </button>
+      <button
+      onClick={handleOpenGoalWindow}
+      style={btnStyle}
+    >
+      Show Goal
+    </button>
 
-          <button
-          onClick={() => setShowGuide(true)}
-          style={{
-            marginLeft: '1rem',
-            padding: '6px 12px',
-            borderRadius: '6px',
-            fontWeight: 'bold',
-            fontFamily: "'IBM Plex Mono', monospace",
-            border: '1px solid #999',
-            backgroundColor: '#fff',
-            cursor: 'pointer'
-          }}
-        >
-          Show Guide
-        </button>
-      </div>
+    </div>
+
 
         <div
         style={{

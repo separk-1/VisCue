@@ -11,6 +11,17 @@ function createLogEntry(type, label) {
 
 const expectedStates = initialSets['Expected State']
 
+const btnStyle = {
+  padding: '6px 12px',
+  borderRadius: '6px',
+  fontWeight: 'bold',
+  fontFamily: "'IBM Plex Mono', monospace",
+  border: '1px solid #999',
+  backgroundColor: '#fff',
+  cursor: 'pointer'
+}
+
+
 function VisualIndicator({ state, expected }) {
   const isOn = state === 'ON'
   const isCorrect = state === expected
@@ -139,6 +150,12 @@ export default function App_B_wog() {
   }
   
 
+  const handleOpenGoalWindow = () => {
+    localStorage.setItem('goalState', JSON.stringify(initialSets['Expected State']))
+    window.open('/goal.html', '_blank', 'width=700,height=600')
+  }
+
+  
   const handleSetChange = (e) => {
     const newSet = e.target.value
     setSelectedSetName(newSet)
@@ -208,23 +225,19 @@ export default function App_B_wog() {
       {showGuide && <GuideB onClose={() => setShowGuide(false)} />}
 
       <div className="interface-body">
-        <div style={{ marginBottom: '1rem' }}>
-
-          <button
-          onClick={() => setShowGuide(true)}
-          style={{
-            marginLeft: '1rem',
-            padding: '6px 12px',
-            borderRadius: '6px',
-            fontWeight: 'bold',
-            fontFamily: "'IBM Plex Mono', monospace",
-            border: '1px solid #999',
-            backgroundColor: '#fff',
-            cursor: 'pointer'
-          }}
-        >
-          Show Guide
-        </button>
+      <div style={{ marginBottom: '1rem', display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+      <button
+        onClick={() => setShowGuide(true)}
+        style={btnStyle}
+      >
+        Show Guide
+      </button>
+      <button
+      onClick={handleOpenGoalWindow}
+      style={btnStyle}
+    >
+      Show Goal
+    </button>
         </div>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>

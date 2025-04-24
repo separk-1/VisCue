@@ -62,7 +62,7 @@ console.log("controls:", controls)
 
   const handleDownload = () => {
     const data = {
-      interface: "A",
+      interface: "#2",
       selectedInitialState: selectedSetName,
       participant: participantName,
       log: log.current

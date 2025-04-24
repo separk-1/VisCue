@@ -150,7 +150,7 @@ export default function App_B_wg() {
 
   const handleDownload = () => {
     const data = {
-      interface: "B",
+      interface: "#4",
       selectedInitialState: selectedSetName,
       participant: participantName,
       log: log.current
@@ -211,7 +211,18 @@ export default function App_B_wg() {
         <div style={{ marginBottom: '1rem' }}>
 
           <button
-          onClick={() => setShowGuide(true)}
+          onClick={(e) => {
+            setShowGuide(true)
+            if (isLogging && !isExperimentEnded) {
+              log.current.push({
+                type: 'guide',
+                label: 'Show Guide button clicked',
+                time: Date.now(),
+                x: e?.clientX ?? null,
+                y: e?.clientY ?? null
+              })
+            }
+          }}
           style={{
             marginLeft: '1rem',
             padding: '6px 12px',

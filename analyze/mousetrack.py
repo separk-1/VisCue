@@ -7,8 +7,8 @@ import argparse
 
 # Argument parser
 parser = argparse.ArgumentParser()
-parser.add_argument('--log', type=str, default='./logs/log_20250423_170805_Seongeun_2.json', help='Path to log file')
-parser.add_argument('--bg', type=str, default='True', help='Use background image (True/False)')
+parser.add_argument('--log', type=str, default='./logs/log_20250424_011413_All_Correct.json', help='Path to log file')
+parser.add_argument('--bg', type=str, default='False', help='Use background image (True/False)')
 args = parser.parse_args()
 
 log_path = args.log
@@ -26,6 +26,7 @@ end_time = next((e['time'] for e in logs if e['type'] == 'experimentEnd'), None)
 
 moves = [e for e in logs if e['type'] == 'mousemove' and (start_time is None or (start_time <= e['time'] <= (end_time or float('inf'))))]
 clicks = [e for e in logs if e['type'] == 'toggle']
+click_guide = [e for e in logs if e['type'] == 'guide']
 
 x = np.array([e['x'] for e in moves])
 y = np.array([e['y'] for e in moves])
@@ -52,6 +53,9 @@ qv = ax.quiver(
 click_x = [e['x'] for e in clicks if 'x' in e and 'y' in e]
 click_y = [e['y'] for e in clicks if 'x' in e and 'y' in e]
 ax.scatter(click_x, click_y, c='orange', edgecolors='black', s=80)
+guide_x = [e['x'] for e in click_guide if 'x' in e and 'y' in e]
+guide_y = [e['y'] for e in click_guide if 'x' in e and 'y' in e]
+ax.scatter(guide_x, guide_y, facecolors='none', edgecolors='blue', s=100, linewidths=2)
 
 ax.set_xlim([0, canvas_size[0]])
 ax.set_ylim([canvas_size[1], 0])

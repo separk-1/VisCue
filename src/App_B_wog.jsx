@@ -150,7 +150,7 @@ export default function App_B_wog() {
 
   const handleDownload = () => {
     const data = {
-      interface: "B",
+      interface: "#3",
       selectedInitialState: selectedSetName,
       participant: participantName,
       log: log.current

@@ -26,43 +26,45 @@ export default function AnalyzePage() {
     const log = logData.log
     const target = initialAndTarget.target
     const initial = initialAndTarget.initial
-
+  
     const startTime = log.find(e => e.type === 'experimentStart')?.time ?? 0
     const endTime = log.find(e => e.type === 'experimentEnd')?.time ?? null
-
+  
     const toggleEvents = log.filter(e => e.type === 'toggle')
     const toggleCounts = {}
     const state = { ...initial }
     const timeToTarget = {}
-
+  
     toggleEvents.forEach(e => {
-      const [label, val] = e.label.split(' ').slice(-2)
+      const parts = e.label.split(' ')
+      const val = parts.at(-1) // 'ON' or 'OFF'
+      const label = e.label.replace(/ (ON|OFF)$/, '') // everything after "Toggle" and before ON/OFF
       toggleCounts[label] = (toggleCounts[label] || 0) + 1
       state[label] = val
       if (!timeToTarget[label] && val === target[label]) {
         timeToTarget[label] = (e.time - startTime) / 1000
       }
     })
-
+  
     const mastered = Object.entries(toggleCounts)
       .filter(([label, count]) => count === 1 && state[label] === target[label])
       .map(([label]) => label)
-
+  
     const confused = Object.entries(toggleCounts)
       .filter(([label, count]) => count > 1 || state[label] !== target[label])
       .map(([label]) => label)
-
+  
     const unmatched = Object.entries(target)
       .filter(([label, val]) => state[label] !== val)
       .map(([label]) => label)
-
+  
     const correctTotal = Object.entries(target)
       .filter(([k, v]) => state[k] === v).length
-
+  
     const total = Object.keys(target).length
     const accuracy = (correctTotal / total * 100).toFixed(1)
     const avgTime = Object.values(timeToTarget).reduce((a, b) => a + b, 0) / Object.values(timeToTarget).length || 0
-
+  
     setAnalysis({
       accuracy,
       mastered,
@@ -73,6 +75,7 @@ export default function AnalyzePage() {
       finalMatch: unmatched.length === 0
     })
   }
+  
 
   return (
     <div style={{ padding: '2rem', textAlign: 'center' }}>
@@ -84,7 +87,6 @@ export default function AnalyzePage() {
           <div style={{ marginTop: '1rem' }}>
             <h3>Participant: {logData.participant}</h3>
             <p><strong>Interface:</strong> {logData.interface}</p>
-            <p><strong>Initial State:</strong> {logData.selectedInitialState}</p>
             <p><strong>Total Toggles:</strong> {logData.log.filter(e => e.type === 'toggle').length}</p>
             <button onClick={runAnalysis} style={btn}>Run Full Analysis</button>
           </div>

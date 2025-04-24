@@ -1,3 +1,12 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+}
+
+
 .box {
     width: 160px;
     height: 40px;

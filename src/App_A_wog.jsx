@@ -122,12 +122,7 @@ console.log("controls:", controls)
 
       <div className="interface-body">
         <div style={{ marginBottom: '1rem' }}>
-          <label style={{ fontWeight: 'bold', marginRight: '8px' }}>Initial State Set:</label>
-          <select value={selectedSetName} onChange={handleSetChange}>
-            {Object.keys(initialSets).map(setName => (
-              <option key={setName} value={setName}>{setName}</option>
-            ))}
-          </select>
+          
 
           <button
           onClick={() => setShowGuide(true)}

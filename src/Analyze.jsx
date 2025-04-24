@@ -4,6 +4,7 @@ import initialAndTarget from '../analyze/initial_and_target_states.json'
 export default function AnalyzePage() {
   const [logData, setLogData] = useState(null)
   const [analysis, setAnalysis] = useState(null)
+  const [showGuide, setShowGuide] = useState(false)
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0]
@@ -14,7 +15,7 @@ export default function AnalyzePage() {
       try {
         const parsed = JSON.parse(e.target.result)
         setLogData(parsed)
-        setAnalysis(null)
+        analyzeLog(parsed)
       } catch (err) {
         alert('Invalid JSON file')
       }
@@ -22,49 +23,47 @@ export default function AnalyzePage() {
     reader.readAsText(file)
   }
 
-  const runAnalysis = () => {
-    const log = logData.log
+  const analyzeLog = (data) => {
+    const log = data.log
     const target = initialAndTarget.target
     const initial = initialAndTarget.initial
-  
+
     const startTime = log.find(e => e.type === 'experimentStart')?.time ?? 0
-    const endTime = log.find(e => e.type === 'experimentEnd')?.time ?? null
-  
+
     const toggleEvents = log.filter(e => e.type === 'toggle')
     const toggleCounts = {}
     const state = { ...initial }
     const timeToTarget = {}
-  
+
     toggleEvents.forEach(e => {
-      const parts = e.label.split(' ')
-      const val = parts.at(-1) // 'ON' or 'OFF'
-      const label = e.label.replace(/ (ON|OFF)$/, '') // everything after "Toggle" and before ON/OFF
+      const val = e.label.split(' ').at(-1)
+      const label = e.label.replace(/ (ON|OFF)$/, '')
       toggleCounts[label] = (toggleCounts[label] || 0) + 1
       state[label] = val
       if (!timeToTarget[label] && val === target[label]) {
         timeToTarget[label] = (e.time - startTime) / 1000
       }
     })
-  
+
     const mastered = Object.entries(toggleCounts)
       .filter(([label, count]) => count === 1 && state[label] === target[label])
       .map(([label]) => label)
-  
+
     const confused = Object.entries(toggleCounts)
       .filter(([label, count]) => count > 1 || state[label] !== target[label])
       .map(([label]) => label)
-  
+
     const unmatched = Object.entries(target)
       .filter(([label, val]) => state[label] !== val)
       .map(([label]) => label)
-  
+
     const correctTotal = Object.entries(target)
       .filter(([k, v]) => state[k] === v).length
-  
+
     const total = Object.keys(target).length
     const accuracy = (correctTotal / total * 100).toFixed(1)
     const avgTime = Object.values(timeToTarget).reduce((a, b) => a + b, 0) / Object.values(timeToTarget).length || 0
-  
+
     setAnalysis({
       accuracy,
       mastered,
@@ -75,7 +74,6 @@ export default function AnalyzePage() {
       finalMatch: unmatched.length === 0
     })
   }
-  
 
   return (
     <div style={{ padding: '2rem', textAlign: 'center' }}>
@@ -86,9 +84,11 @@ export default function AnalyzePage() {
         <>
           <div style={{ marginTop: '1rem' }}>
             <h3>Participant: {logData.participant}</h3>
-            <p><strong>Interface:</strong> {logData.interface}</p>
-            <p><strong>Total Toggles:</strong> {logData.log.filter(e => e.type === 'toggle').length}</p>
-            <button onClick={runAnalysis} style={btn}>Run Full Analysis</button>
+            <p><strong>Senario:</strong> {logData.interface}</p>
+            <p><strong>Total Toggles:</strong> {analysis?.totalToggles}</p>
+            <button onClick={() => setShowGuide(prev => !prev)} style={btn}>
+              {showGuide ? 'Hide Guide' : 'Show Guide'}
+            </button>
           </div>
 
           {analysis && (
@@ -99,6 +99,21 @@ export default function AnalyzePage() {
               <p><strong>Mastered:</strong> {analysis.mastered.join(', ')}</p>
               <p><strong>Confused:</strong> {analysis.confused.join(', ')}</p>
               <p><strong>Unmatched:</strong> {analysis.unmatched.join(', ')}</p>
+            </div>
+          )}
+
+          {showGuide && (
+            <div style={{ marginTop: '2rem', fontSize: '0.9rem', color: '#444', maxWidth: '700px', marginInline: 'auto', textAlign: 'left' }}>
+              <h3>Guide: How Each Metric is Calculated</h3>
+              <ul>
+                <li><strong>Accuracy:</strong> The percentage of items whose final state matches the target (correct / total).</li>
+                <li><strong>Final State Correct:</strong> "Yes" if all final states match the target, otherwise "No".</li>
+                <li><strong>Average Time to Correct:</strong> The average time (in seconds) it took for each item to first reach its correct target state.</li>
+                <li><strong>Mastered:</strong> Items toggled exactly once and ended in the correct target state.</li>
+                <li><strong>Confused:</strong> Items toggled more than once or ended in an incorrect state.</li>
+                <li><strong>Unmatched:</strong> Items whose final state still does not match the target state.</li>
+              </ul>
+
             </div>
           )}
         </>

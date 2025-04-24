@@ -7,7 +7,7 @@ import argparse
 
 # Argument parser
 parser = argparse.ArgumentParser()
-parser.add_argument('--log', type=str, default='./logs/log_20250424_011413_All_Correct.json', help='Path to log file')
+parser.add_argument('--log', type=str, default='./logs/log_20250424_155227_Test.json', help='Path to log file')
 parser.add_argument('--bg', type=str, default='False', help='Use background image (True/False)')
 args = parser.parse_args()
 

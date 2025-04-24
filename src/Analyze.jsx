@@ -84,7 +84,7 @@ export default function AnalyzePage() {
         <>
           <div style={{ marginTop: '1rem' }}>
             <h3>Participant: {logData.participant}</h3>
-            <p><strong>Senario:</strong> {logData.interface}</p>
+            <p><strong>Scenario:</strong> {logData.interface}</p>
             <p><strong>Total Toggles:</strong> {analysis?.totalToggles}</p>
           </div>
 

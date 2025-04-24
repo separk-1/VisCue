@@ -132,7 +132,7 @@ console.log("controls:", controls)
 
   return (
     <div className="fullscreen-app">
-    <h2 style={{ fontFamily: 'sans-serif'}}>Senario #1</h2>
+    <h2 style={{ fontFamily: 'sans-serif'}}>Scenario #1</h2>
       {showGuide && <GuideA onClose={() => setShowGuide(false)} />}
 
       <div className="interface-body">

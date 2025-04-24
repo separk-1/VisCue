@@ -221,7 +221,7 @@ export default function App_B_wog() {
 
   return (
     <div className="fullscreen-app" style={{ backgroundColor: '#d3d3d3', padding: '1rem' }}>
-    <h2 style={{ fontFamily: 'sans-serif'}}>Senario #3</h2>
+    <h2 style={{ fontFamily: 'sans-serif'}}>Scenario #3</h2>
       {showGuide && <GuideB onClose={() => setShowGuide(false)} />}
 
       <div className="interface-body">

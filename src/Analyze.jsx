@@ -86,9 +86,6 @@ export default function AnalyzePage() {
             <h3>Participant: {logData.participant}</h3>
             <p><strong>Senario:</strong> {logData.interface}</p>
             <p><strong>Total Toggles:</strong> {analysis?.totalToggles}</p>
-            <button onClick={() => setShowGuide(prev => !prev)} style={btn}>
-              {showGuide ? 'Hide Guide' : 'Show Guide'}
-            </button>
           </div>
 
           {analysis && (

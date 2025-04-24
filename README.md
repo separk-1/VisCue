@@ -44,14 +44,21 @@ npm run dev
 - Defined in `src/data/initialStates.js`
 - Selectable via a dropdown menu at the top of the UI.
 
+### 🎯 Target Goal State
+- The target goal state is defined and can be previewed by clicking the **Show Goal** button.
+- A new browser window will open and display the expected final state using `goal.html`.
+- Target state is passed via `localStorage` under the key `goalState`.
+
 ### 💾 Log Collection
 - All toggle actions and mouse movements are recorded.
-- Clicking "Download Logs" generates a `log.json` file.
+- Clicking **Download Logs** generates a `log_YYYYMMDD_HHMMSS_name.json` file.
 - Example log structure:
 
 ```json
 {
+  "interface": "#1",
   "selectedInitialState": "Set A",
+  "participant": "your_id",
   "log": [
     { "type": "toggle", "label": "Block Valve ON", "time": 1682918300000 },
     { "type": "mousemove", "x": 512, "y": 210, "time": 1682918300500 }
@@ -59,14 +66,21 @@ npm run dev
 }
 ```
 
+### 🪟 Popup Goal Display (goal.html)
+- Found in `public/goal.html`
+- Displays target state from localStorage
+- Designed for side-by-side reference during experiments
+
 ---
 
 ## 🛠 How to Modify
 
 - **Initial state configuration** → `src/data/initialStates.js`
+- **Target goal display (popup)** → `public/goal.html`
 - **UI styling** → `src/styles/ui.css`
 - **Display panel rendering** → `src/components/DisplayGrid.jsx`
 - **Control buttons rendering** → `src/components/ControlGrid.jsx`
+- **Logging logic** → `App_[Scenario].jsx`
 
 ---
 
@@ -88,5 +102,7 @@ npm run build  # Builds project to the dist/ folder
 - Conda (for integrated Python + NodeJS setup)
 
 ---
+
 🔗 Live Demo: [vis-cue.vercel.app](https://vis-cue-ss-projects-d534f65d.vercel.app/)
 📂 Source Code: [github.com/separk-1/viscue](https://github.com/separk-1/viscue)
+

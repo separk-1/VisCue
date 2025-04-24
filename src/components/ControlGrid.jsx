@@ -6,7 +6,7 @@ export default function ControlGrid({ controls, states, onToggle }) {
             key={label}
             style={{
               width: '160px',
-              height: '160px',
+              height: '100px',
               backgroundColor: '#f5f5f5',
               border: '1px solid #ccc',
               borderRadius: '8px',

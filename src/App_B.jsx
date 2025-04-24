@@ -183,7 +183,6 @@ export default function App_B() {
 
   return (
     <div className="fullscreen-app" style={{ backgroundColor: '#d3d3d3', padding: '1rem' }}>
-      <h2 style={{ fontFamily: 'sans-serif', padding: '1rem' }}>Interface B</h2>
 
       <div className="interface-body">
         <div style={{ marginBottom: '1rem' }}>

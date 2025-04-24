@@ -4,8 +4,13 @@ import './App.css'
 import './styles/ui.css'
 import DisplayGrid from './components/DisplayGrid'
 import ControlGrid from './components/ControlGrid'
-import BoxLabel from './components/BoxLabel'
 import { initialSets } from './data/initialStates'
+
+const panelStyle = {
+  width: '100%',
+  maxWidth: '1200px',
+  marginInline: 'auto',
+}
 
 function createLogEntry(type, label) {
   return { type, label, time: Date.now() }
@@ -109,7 +114,6 @@ console.log("controls:", controls)
 
   return (
     <div className="fullscreen-app">
-      <h2 style={{ fontFamily: 'sans-serif', padding: '1rem' }}>Interface A</h2>
 
       <div className="interface-body">
         <div style={{ marginBottom: '1rem' }}>
@@ -121,12 +125,26 @@ console.log("controls:", controls)
           </select>
         </div>
 
-        <div className="display-panel-scrollable">
+        <div
+        style={{
+          ...panelStyle,
+          backgroundColor: '#f8f9fa',
+          padding: '0.5rem 0.75rem',
+          borderRadius: '10px',
+          border: '1px solid #ccc',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          marginBottom: '2rem'
+        }}>
           <DisplayGrid controls={controls} states={states} />
         </div>
 
-        <ControlGrid controls={controls} states={states} onToggle={(label, newState, event) => handleToggle(label, newState, event)} />
-
+      <div style={panelStyle}>
+      <ControlGrid
+        controls={controls}
+        states={states}
+        onToggle={(label, newState, event) => handleToggle(label, newState, event)}
+      />
+    </div>
 
         <div style={{ textAlign: 'center', marginTop: '1rem' }}>
           <input

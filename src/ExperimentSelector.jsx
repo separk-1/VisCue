@@ -1,10 +1,16 @@
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import GuideModal from './components/GuideModal'
 
 export default function ExperimentSelector() {
   const navigate = useNavigate()
+  const [showGuide, setShowGuide] = useState(true)
 
   return (
     <div style={{ textAlign: 'center', padding: '3rem' }}>
+      
+    {showGuide && <GuideModal onClose={() => setShowGuide(false)} />}
+
       <h1>Select an Experiment</h1>
       <div style={{ marginTop: '2rem' }}>
         <button onClick={() => navigate('/exp1')} style={btnStyle}>Scenario #1</button>

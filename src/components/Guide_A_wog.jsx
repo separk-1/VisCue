@@ -1,5 +1,7 @@
 // src/components/Guide_A.jsx
 import React from 'react';
+import '../styles/ui.css'
+
 
 export default function GuideModal({ onClose }) {
   return (

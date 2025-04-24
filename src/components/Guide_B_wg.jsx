@@ -1,5 +1,7 @@
 import React from 'react';
 import legendImage from '../assets/guide.png'; 
+import '../styles/ui.css'
+
 
 export default function GuideModal({ onClose }) {
   return (

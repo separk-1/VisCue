@@ -18,29 +18,28 @@ function VisualIndicator({ state, expected }) {
   return (
     <div style={{
       position: 'relative',
-      width: '60px',
-      height: '60px',
-      backgroundColor: '#ccc',    
-      borderRadius: '12px',
+      width: '72px',
+      height: '72px',
+      backgroundColor: '#ccc',
+      borderRadius: '4px',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
     }}>
-      {/* 도넛 테두리만 있는 원 */}
+      {/* 도넛 테두리 */}
       <div style={{
-        width: '44px',
-        height: '44px',
+        width: '66px',
+        height: '66px',
         borderRadius: '50%',
-        border: `6px solid ${isOn ? color : '#ddd'}`,
-        backgroundColor: 'transparent',  // 
+        border: `8px solid ${isOn ? color : '#ddd'}`,
+        backgroundColor: 'transparent',
         boxSizing: 'border-box',
       }} />
-
       {/* 가로 선 */}
       <div style={{
         position: 'absolute',
-        width: '46px',
-        height: '6px',
+        width: '68px',
+        height: '16px',
         backgroundColor: isOn ? '#eee' : color,
         borderRadius: '4px',
         opacity: isOn ? 0.2 : 1,
@@ -65,11 +64,26 @@ function StateCard({ label, state, expected, onToggle }) {
       alignItems: 'stretch',
       boxShadow: '1px 1px 4px rgba(0,0,0,0.15)'
     }}>
-      <div style={{ fontSize: '0.9rem', fontWeight: '600', marginBottom: '0.5rem', textAlign: 'center' }}>{label}</div>
+      <div style={{
+        fontSize: '0.8rem',
+        fontWeight: '600',
+        fontFamily: "'IBM Plex Mono', monospace",
+        marginBottom: '0.5rem',
+        textAlign: 'center'
+      }}>
+        {label}
+      </div>
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <VisualIndicator state={state} expected={expected} />
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+      <div style={{ marginLeft: '1.5rem' }}>
+          <VisualIndicator state={state} expected={expected} />
+        </div>
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.4rem',
+            marginRight: '0.75rem' 
+          }}>
           <button style={buttonStyle} onClick={(e) => onToggle('ON', e)}>ON</button>
           <button style={buttonStyle} onClick={(e) => onToggle('OFF', e)}>OFF</button>
         </div>
@@ -78,6 +92,7 @@ function StateCard({ label, state, expected, onToggle }) {
   )
 }
 
+
 const buttonStyle = {
   padding: '6px 10px',
   borderRadius: '6px',
@@ -85,6 +100,7 @@ const buttonStyle = {
   background: 'white',
   fontWeight: 'bold',
   cursor: 'pointer',
+  fontFamily: "'IBM Plex Mono', monospace",
   minWidth: '50px'
 }
 

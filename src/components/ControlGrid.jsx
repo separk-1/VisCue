@@ -1,5 +1,6 @@
 export default function ControlGrid({ controls, states, onToggle }) {
     return (
+      
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
         {controls.map(label => (
           <div
@@ -14,8 +15,10 @@ export default function ControlGrid({ controls, states, onToggle }) {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 1px 4px rgba(0, 0, 0, 0.1)',
-              fontFamily: 'Roboto, sans-serif'
+              boxShadow: '0 1px 4px rgba(0, 0, 0, 0.66)',
+              fontFamily: 'IBM Plex Mono, sans-serif',
+              fontSize: 13,
+              fontWeight: 'bold'
             }}
           >
             <div style={{ marginBottom: '10px', fontWeight: 'bold', textAlign: 'center' }}>{label}</div>
@@ -44,7 +47,7 @@ export default function ControlGrid({ controls, states, onToggle }) {
                   borderRadius: '4px',
                   width: '60px',
                   fontWeight: 'bold',
-                  fontFamily: 'Roboto, sans-serif'
+                  fontFamily: 'IBM Plex Mono, sans-serif'
                 }}
               >
                 OFF

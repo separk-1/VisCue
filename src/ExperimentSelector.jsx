@@ -7,8 +7,10 @@ export default function ExperimentSelector() {
     <div style={{ textAlign: 'center', padding: '3rem' }}>
       <h1>Select an Experiment</h1>
       <div style={{ marginTop: '2rem' }}>
-        <button onClick={() => navigate('/exp1')} style={btnStyle}>Interface A</button>
-        <button onClick={() => navigate('/exp2')} style={btnStyle}>Interface B</button>
+        <button onClick={() => navigate('/exp1')} style={btnStyle}>Senario #1</button>
+        <button onClick={() => navigate('/exp2')} style={btnStyle}>Senario #2</button>
+        <button onClick={() => navigate('/exp3')} style={btnStyle}>Senario #3</button>
+        <button onClick={() => navigate('/exp4')} style={btnStyle}>Senario #4</button>
         <button onClick={() => navigate('/analyze')} style={analyzeBtnStyle}>Analyze Logs</button>
       </div>
     </div>

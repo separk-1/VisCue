@@ -1,4 +1,3 @@
-// src/pages/ExperimentSelector.jsx
 import { useNavigate } from 'react-router-dom'
 
 export default function ExperimentSelector() {
@@ -10,6 +9,7 @@ export default function ExperimentSelector() {
       <div style={{ marginTop: '2rem' }}>
         <button onClick={() => navigate('/exp1')} style={btnStyle}>Interface A</button>
         <button onClick={() => navigate('/exp2')} style={btnStyle}>Interface B</button>
+        <button onClick={() => navigate('/analyze')} style={analyzeBtnStyle}>Analyze Logs</button>
       </div>
     </div>
   )
@@ -24,4 +24,9 @@ const btnStyle = {
   color: 'white',
   border: 'none',
   cursor: 'pointer'
+}
+
+const analyzeBtnStyle = {
+  ...btnStyle,
+  backgroundColor: '#F59F00'
 }

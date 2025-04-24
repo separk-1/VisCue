@@ -24,13 +24,17 @@ export default function App_A() {
 
   const handleToggle = (label, newState, event = null) => {
     setStates(prev => ({ ...prev, [label]: newState }))
+
+    const isCorrectClick = initialSets['Expected State'][label] === newState
+
     if (isLogging && !isExperimentEnded) {
       log.current.push({
         type: 'toggle',
         label: `${label} ${newState}`,
         time: Date.now(),
         x: event?.clientX ?? null,
-        y: event?.clientY ?? null
+        y: event?.clientY ?? null,
+        correct: isCorrectClick
       })
     }
   }

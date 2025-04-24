@@ -18,40 +18,38 @@ function VisualIndicator({ state, expected }) {
   return (
     <div style={{
       position: 'relative',
-      width: '40px',
-      height: '40px',
+      width: '60px',
+      height: '60px',
       backgroundColor: '#ccc',
-      borderRadius: '8px',
+      borderRadius: '12px',
     }}>
-      {/* 도넛형 원 */}
       <div style={{
         position: 'absolute',
-        top: '4px',
-        left: '4px',
-        width: '32px',
-        height: '32px',
+        top: '6px',
+        left: '6px',
+        width: '48px',
+        height: '48px',
         borderRadius: '50%',
-        border: `6px solid ${isOn ? color : '#eee'}`,
+        border: `8px solid ${isOn ? color : '#eee'}`,
         backgroundColor: '#eee',
         boxSizing: 'border-box',
-        opacity: isOn ? 1 : 0.3  // 비활성화되면 흐릿하게
+        opacity: isOn ? 1 : 0.3
       }} />
-
-      {/* 수평 막대 */}
       <div style={{
         position: 'absolute',
         top: '50%',
-        left: '4px',
-        width: '32px',
-        height: '6px',
+        left: '6px',
+        width: '48px',
+        height: '8px',
         backgroundColor: isOn ? '#eee' : color,
         transform: 'translateY(-50%)',
-        borderRadius: '2px',
+        borderRadius: '4px',
         opacity: isOn ? 0.3 : 1
       }} />
     </div>
   )
 }
+
 
 
 function StateCard({ label, state, expected, onToggle }) {
@@ -104,16 +102,21 @@ export default function App_B() {
 
   const handleToggle = (label, newState, event = null) => {
     setStates(prev => ({ ...prev, [label]: newState }))
+  
+    const isCorrectClick = expectedStates[label] === newState
+  
     if (isLogging && !isExperimentEnded) {
       log.current.push({
         type: 'toggle',
         label: `${label} ${newState}`,
         time: Date.now(),
         x: event?.clientX ?? null,
-        y: event?.clientY ?? null
+        y: event?.clientY ?? null,
+        correct: isCorrectClick  
       })
     }
   }
+  
 
   const handleSetChange = (e) => {
     const newSet = e.target.value

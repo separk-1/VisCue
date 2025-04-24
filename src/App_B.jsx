@@ -13,42 +13,42 @@ const expectedStates = initialSets['Expected State']
 function VisualIndicator({ state, expected }) {
   const isOn = state === 'ON'
   const isCorrect = state === expected
-  const color = isCorrect ? 'limegreen' : 'red'
+  const color = isCorrect ? '#a6f3a6' : '#ef9999'
 
   return (
     <div style={{
       position: 'relative',
       width: '60px',
       height: '60px',
-      backgroundColor: '#ccc',
+      backgroundColor: '#ccc',    
       borderRadius: '12px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
     }}>
+      {/* 도넛 테두리만 있는 원 */}
       <div style={{
-        position: 'absolute',
-        top: '6px',
-        left: '6px',
-        width: '48px',
-        height: '48px',
+        width: '44px',
+        height: '44px',
         borderRadius: '50%',
-        border: `8px solid ${isOn ? color : '#eee'}`,
-        backgroundColor: '#eee',
+        border: `6px solid ${isOn ? color : '#ddd'}`,
+        backgroundColor: 'transparent',  // 
         boxSizing: 'border-box',
-        opacity: isOn ? 1 : 0.3
       }} />
+
+      {/* 가로 선 */}
       <div style={{
         position: 'absolute',
-        top: '50%',
-        left: '6px',
-        width: '48px',
-        height: '8px',
+        width: '46px',
+        height: '6px',
         backgroundColor: isOn ? '#eee' : color,
-        transform: 'translateY(-50%)',
         borderRadius: '4px',
-        opacity: isOn ? 0.3 : 1
+        opacity: isOn ? 0.2 : 1,
       }} />
     </div>
   )
 }
+
 
 
 

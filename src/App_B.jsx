@@ -31,10 +31,11 @@ function VisualIndicator({ state, expected }) {
         width: '66px',
         height: '66px',
         borderRadius: '50%',
-        border: `8px solid ${isOn ? color : '#ddd'}`,
+        border: `10px solid ${isOn ? color : '#ddd'}`,
         backgroundColor: 'transparent',
         boxSizing: 'border-box',
       }} />
+
       {/* 가로 선 */}
       <div style={{
         position: 'absolute',

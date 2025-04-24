@@ -34,6 +34,7 @@ function VisualIndicator({ state, expected }) {
         border: `10px solid ${isOn ? color : '#ddd'}`,
         backgroundColor: 'transparent',
         boxSizing: 'border-box',
+        transition: 'border-color 0.25s ease-in-out'
       }} />
 
       {/* 가로 선 */}
@@ -44,6 +45,7 @@ function VisualIndicator({ state, expected }) {
         backgroundColor: isOn ? '#eee' : color,
         borderRadius: '4px',
         opacity: isOn ? 0.2 : 1,
+        transition: 'background-color 0.2s ease-in-out, opacity 0.2s ease-in-out'
       }} />
     </div>
   )
